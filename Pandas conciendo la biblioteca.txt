@@ -1,0 +1,382 @@
+Pandas conciendo la biblioteca
+01.Conociendo la base de datos
+01 Presentación
+En esta clase de introducción al curso de Pandas, el instructor Álvaro Camacho presenta la biblioteca Pandas, que es fundamental en el área de ciencia de datos. Se destaca que Pandas no se refiere al oso chino, sino a una herramienta que facilita la limpieza, manipulación, análisis y visualización de datos.
+
+Durante el curso, los estudiantes aprenderán a explorar las características de una base de datos utilizando Pandas, realizando un análisis exploratorio de manera ágil y rápida con Python. Se abordarán temas como el manejo de valores nulos, eliminación de registros, creación de columnas y aplicación de filtros, entre otras operaciones útiles en el día a día de la ciencia de datos.
+
+El instructor invita a los estudiantes a estar atentos y preparados para comenzar a trabajar en el próximo vídeo.
+***************************************************
+02
+Preparando el ambiente
+ Siguiente pregunta
+
+Tablero de Trello
+
+Para que puedas mover las tarjetas en el Trello de nuestro proyecto y realizar los cambios que consideres pertinentes, debes realizar una copia de este tablero de Trello en tu cuenta personal. ¿Listo para aprender cómo hacerlo?
+
+Es importante que ya tengas una cuenta en Trello para seguir los pasos a continuación.
+
+1 - Accede al Trello del proyecto;
+
+2 - Haz clic en los tres puntos ubicados en el lado derecho del Trello:
+
+3 - Entre las opciones que aparecen en la barra lateral derecha, selecciona la opción "Copiar Tablero":
+4 - Para finalizar, ingresa el título que deseas darle al tablero que estás copiando, selecciona el área de trabajo en la que deseas guardarlo y haz clic en "Crear":
+
+¡Y listo! La copia del Trello que acabas de crear se abrirá y podrás comenzar a trabajar en ella.
+
+Ambiente de trabajo
+
+En este curso, nuestro entorno de trabajo será Google Colaboratory, y para poder utilizarlo, es necesario tener una cuenta de Gmail, ya que cada cuaderno se almacenará en Google Drive.
+
+Si deseas utilizar el cuaderno inicial del instructor para desarrollar el proyecto, puedes descargar el cuaderno inicial.
+
+Base de datos
+
+El enlace para acceder a la base de datos que utilizaremos a lo largo del curso se encuentra en el tablero de Trello del proyecto, en una tarjeta llamada "Base de datos". Sin embargo, si lo prefieres, también puedes acceder a la base de datos a través de GitHub.
+***************************************************************
+03 Entendiendo el proyecto
+En esta clase, se introduce el contexto del proyecto en el que los estudiantes actuarán como científicos de datos para una inmobiliaria en México. Se destaca la importancia de utilizar Trello como herramienta para organizar las tareas y seguir el progreso del proyecto. Los estudiantes aprenderán a copiar un tablero de Trello y a gestionar las diferentes etapas del proyecto.
+
+Se menciona que se les proporcionará una base de datos que contiene información sobre propiedades en Ciudad de México, incluyendo detalles sobre alquileres, costos de condominio e impuestos. Además, se explica que el primer paso del proyecto será importar y conocer la base de datos, seguido de un análisis exploratorio de los datos. Las tareas se organizarán en un backlog, donde se identificarán las demandas tanto para el equipo de machine learning como para el equipo de desarrolladores web.
+
+Finalmente, se enfatiza que el tablero de Trello no solo será útil para este proyecto, sino también para futuros proyectos, ayudando a los estudiantes a gestionar sus tareas de manera más efectiva.
+***********************************************************************++
+04
+Para saber más: la biblioteca Pandas
+ Siguiente pregunta
+
+Pandas es una biblioteca de código abierto en Python utilizada para el análisis de datos. Proporciona herramientas poderosas y fáciles de usar para la manipulación y análisis de datos en formatos de tablas, como CSV, Excel, SQL y muchos otros.
+
+Con Pandas, podemos cargar datos desde diversas fuentes en un objeto llamado DataFrame, que es una tabla de datos similar a una hoja de cálculo de Excel. Luego, podemos trabajar con estos datos realizando operaciones como filtrar, ordenar, agregar y transformar.
+
+La biblioteca Pandas es ampliamente utilizada en aplicaciones de ciencia de datos, aprendizaje automático, finanzas y análisis empresarial. Es una herramienta esencial para profesionales que trabajan con datos, como analistas de datos, científicos de datos e ingenieros de datos.
+
+En resumen, la biblioteca Pandas es una herramienta de alto rendimiento para el análisis de datos en Python, que permite trabajar con datos en diferentes formatos y realizar diversas operaciones para manipular, analizar y visualizar los datos de manera eficiente y productiva.
+*****************************************************
+05
+Importando los datos
+En esta clase, aprendimos a importar una base de datos utilizando la biblioteca pandas en un entorno de Google Colab. Comenzamos creando un nuevo cuaderno llamado inmuebles_cdmx y conectándonos a una máquina virtual de Google. Luego, importamos la biblioteca pandas con la convención import pandas as pd.
+
+El siguiente paso fue obtener la URL del archivo alquiler.csv desde un gist de GitHub y almacenarla en una variable llamada url. Al leer el archivo con pd.read_csv, especificamos el parámetro sep como punto y coma, ya que los valores en el archivo están separados por este carácter.
+
+Almacenamos los datos en una variable llamada datos y aprendimos a visualizar la información utilizando datos.head() para ver las primeras filas y datos.tail() para las últimas. También exploramos cómo obtener una muestra aleatoria de filas con datos.sample(10).
+
+Finalmente, discutimos que al instanciar un objeto de pandas, creamos un DataFrame, que es una estructura de datos similar a una tabla, facilitando la manipulación y visualización de los datos. Con esto, completamos el primer 50% del trabajo de importación de datos.
+************************************************************************
+ 06 Para saber más: diferentes formatos de datos
+ Siguiente pregunta
+
+Pandas ofrece diversas funciones para importar y exportar datos en diferentes formatos. Las principales funciones de Pandas para importar datos son las siguientes:
+
+read_csv(): Esta función se utiliza para leer archivos CSV (Comma Separated Values), que son archivos de texto que contienen datos separados por comas. Es posible proporcionar varios parámetros para personalizar la lectura del CSV, como el delimitador, el encabezado, el tipo de codificación, entre otros.
+
+read_excel(): Esta función se utiliza para leer archivos de Excel (.xls o .xlsx) y crear un DataFrame a partir de los datos.
+
+read_json(): Esta función se utiliza para leer archivos JSON (JavaScript Object Notation), que son archivos de texto que contienen datos en formato de objeto JavaScript.
+
+read_html(): Esta función se utiliza para leer tablas HTML, que son estructuras de datos organizadas en formato de tabla en una página web.
+
+read_sql(): Esta función se utiliza para leer datos de una base de datos relacional, como MySQL, PostgreSQL y SQL Server. Pandas es capaz de importar datos de diferentes maneras, lo que permite ajustar parámetros como la consulta, el nombre de la tabla y el tipo de datos de las columnas.
+
+ Discutir en el Foro
+ Siguiente pre
+******************************************************************************************
+07 Características de los datos
+En esta clase, se abordó la exploración inicial de un conjunto de datos utilizando la biblioteca Pandas. Se enfatizó la importancia de reiniciar el entorno de ejecución y ejecutar todas las celdas en el notebook para asegurar que toda la información esté disponible.
+
+Se presentó cómo obtener características generales del dataset, comenzando por el uso del atributo shape para conocer el tamaño del conjunto de datos, que en este caso era de 25,121 filas y 9 columnas. También se mostró cómo obtener los nombres de las columnas con datos.columns y cómo obtener un resumen de los datos utilizando el método datos.info(), que proporciona información sobre el tipo de datos y la cantidad de entradas no nulas.
+
+Además, se explicó la diferencia entre una serie y un dataframe en Pandas, y se mostró cómo acceder a columnas específicas. Se aclaró que los tipos de datos pueden ser objetos (cadenas de caracteres), enteros (int64) y decimales (float64).
+
+Finalmente, se destacó la importancia de consultar la documentación de Pandas para profundizar en el conocimiento de la biblioteca y se concluyó la clase preparándose para el análisis exploratorio de los datos en la siguiente sesión.
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+ 08 Estructura de datos de Pandas
+ Siguiente pregunta
+
+La biblioteca Pandas es una de las herramientas más utilizadas por los científicos de datos para el análisis y manipulación de datos. Proporciona dos estructuras de datos principales, el DataFrame y la Serie, que se utilizan ampliamente para representar y manipular datos tabulares en Python.
+
+¿Cuáles de las siguientes opciones presentan las definiciones correctas de las estructuras de datos DataFrame y Serie?
+
+Alternativa correta
+Una Serie puede considerarse un conjunto de DataFrames.
+
+
+Alternativa correta
+La Serie es una estructura de datos unidimensional que puede almacenar cualquier tipo de datos, etiquetados con índices.
+
+
+Muy bien, una Serie es básicamente una matriz unidimensional etiquetada que puede almacenar cualquier tipo de datos. Cada elemento de la Serie está etiquetado con un índice que se puede utilizar para acceder y manipular sus valores.
+
+Alternativa correta
+Un DataFrame es una estructura de datos asociativa que almacena pares de clave-valor.
+
+
+Alternativa correta
+El DataFrame es una tabla de datos bidimensional, similar a una hoja de cálculo de Excel, con columnas etiquetadas y filas numeradas.
+
+
+Excelente, un DataFrame es básicamente una estructura de datos bidimensional que se utiliza para almacenar información estructurada en forma de tabla.
+
+¡Enhorabuena, has acertado!
+ Discutir
+*****************************************************************************************
+ 09 Desafío: vamos a practicar
+ Siguiente pregunta
+
+Para practicar los métodos aprendidos a lo largo de esta lección y aprender nuevos, realizaremos algunos análisis utilizando un archivo CSV diferente: alumnos.csv.
+
+Importa el archivo alumnos.csv y almacena su contenido en un DataFrame de Pandas.
+
+Visualiza las primeras 7 filas del DataFrame y las últimas 5.
+
+Verifica la cantidad de filas y columnas en este DataFrame.
+
+Explora las columnas del DataFrame y analiza los tipos de datos presentes en cada columna.
+
+Extra: Calcula algunas estadísticas descriptivas básicas de los datos en el DataFrame (media, desviación estándar, etc.). Pista: busca el método "describe".
+
+Si necesitas ayuda, en la sección "Opinión del Instructor" puedes encontrar algunas formas de resolver los desafíos propuestos anteriormente.
+
+Ver opinión del instructor
+Opinión del instructor
+
+¿Listo para enfrentar estos desafíos?
+
+Es importante destacar que en algunas situaciones podemos utilizar diferentes métodos de Pandas para lograr lo mismo. Por lo tanto, las soluciones a continuación no son la única forma de abordar los desafíos planteados.
+
+Para importar el archivo en cuestión y guardarlo en un DataFrame, podemos importar la biblioteca Pandas y utilizar la función read_csv() pasando la URL donde se encuentra el archivo:
+
+import pandas as pd
+url = 'https://gist.githubusercontent.com/ahcamachod/807a2c1cf6c19108b2b701ea1791ab45/raw/fb84f8b2d8917a89de26679eccdbc8f9c1d2e933/alumnos.csv'
+datos = pd.read_csv(url)
+Copia el código
+Cuando queremos ver las primeras y últimas filas de un DataFrame, podemos utilizar los métodos head y tail:
+
+datos.head(7)
+datos.tail()
+Copia el código
+Tanto el atributo shape como el método info nos proporcionan la cantidad de filas y columnas en un DataFrame. El info también muestra información adicional, por lo que utilizaremos shape aquí:
+
+datos.shape
+Copia el código
+En este momento, podemos usar .columns para ver las columnas presentes en el DataFrame. Además, también podemos seleccionar columnas específicas utilizando corchetes "[]". Para ver los tipos de datos en cada columna, esta vez opté por utilizar un atributo llamado dtypes:
+
+# Visualizar los nombres de las columnas
+datos.columns
+
+# Seleccionar una columna
+datos['Nombre']
+
+# Seleccionar múltiples columnas
+datos[['Edad', 'Nota']]
+
+# Verificar los tipos de datos en cada columna
+datos.dtypes
+Copia el código
+Extra: Como la sugerencia misma mencionó, podemos utilizar un método de Pandas llamado describe para calcular algunas estadísticas descriptivas básicas de los datos en el DataFrame:
+
+datos.describe()
+Copia el código
+El método describe() es una de las funciones más útiles de Pandas para el análisis exploratorio de datos. Se utiliza para calcular algunas estadísticas descriptivas básicas de los datos en un DataFrame o en una columna específica de un DataFrame.
+
+¡No olvides practicar para consolidar todos los conceptos que has aprendido!
+
+Si tienes alguna pregunta, no dudes en compartirla en el foro o en nuestra comunidad de Discord.
+****************************************************************************************************+
+10
+Lo que aprendimos
+ Siguiente pregunta
+
+Lo que aprendimos en esta aula:
+
+Importar la biblioteca Pandas;
+Realizar la lectura de archivos csv;
+Identificar un DataFrame;
+Visualizar las primeras y últimas filas de un DataFrame;
+Verificar la cantidad de filas y columnas de un DataFrame;
+Comprobar los tipos de datos de cada columna de un DataFrame;
+Seleccionar una o varias columnas.
+***************************************************************************++
+*************************************************************************+
+02. Análisis exploratorio de los datos
+01 Proyecto del aula anterior
+¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
+
+Descargue los archivos en GitHub
+**************************************************************************
+02
+Valor promedio de inmuebles por tipo
+En esta clase, se abordó el Análisis Exploratorio de Datos utilizando la biblioteca Pandas. Se comenzó por entender la estructura del conjunto de datos y se plantearon preguntas sobre los mismos, enfocándose en determinar los valores promedios de alquiler por tipo de propiedad y el porcentaje de cada tipo presente en la base de datos.
+
+Se explicó cómo utilizar la función groupby de Pandas para agrupar los datos por tipo de propiedad y calcular el promedio de los valores de alquiler. Se destacó la importancia de especificar la columna de interés para evitar resultados confusos y se mencionó un warning relacionado con el parámetro numeric_only.
+
+Además, se mostró cómo organizar los resultados en un data frame y ordenarlos de manera ascendente por el valor de alquiler. Para facilitar la visualización, se utilizó la función plot de Pandas para crear una gráfica de barras horizontales que representa los promedios de alquiler por tipo de inmueble.
+
+Finalmente, se mencionó que en la próxima clase se abordará cómo calcular el porcentaje de cada tipo de inmueble en la base de datos.
+***************************************************************************+
+ 03 Para saber más: entendiendo el método groupby
+ Siguiente pregunta
+
+El método groupby de Pandas permite agrupar y resumir datos de un DataFrame basado en uno o más criterios. Estos criterios pueden ser variables numéricas o categóricas, como columnas o índices del DataFrame.
+
+La idea detrás de groupby es dividir los datos en grupos basados en los criterios seleccionados y luego aplicar una operación a estos grupos. Esta operación puede ser una función de agregación, como suma, promedio, recuento, desviación estándar, entre otras, o incluso una operación personalizada definida por el usuario.
+
+Este método tiene varios parámetros, algunos de los cuales son:
+
+by: Este es el parámetro más común y se utiliza para especificar la columna o columnas por las cuales queremos agrupar. Como argumento, podemos pasar el nombre de una columna o una lista de nombres de columnas;
+
+axis: Utilizamos este parámetro para especificar el eje a lo largo del cual queremos agrupar. El valor predeterminado es 0, lo que significa que se agruparán las filas. Si deseamos agrupar las columnas, debemos establecer este parámetro en 1;
+
+sort: Este parámetro es un booleano (True o False) que indica si los grupos deben ordenarse por el valor de la columna de agrupación. El valor predeterminado es True;
+
+dropna: Utilizamos este parámetro para controlar si los valores faltantes (NaN) se eliminarán o no durante el proceso de agrupación. El valor predeterminado es True.
+
+Veamos un ejemplo simple utilizando groupby. Supongamos que tenemos el siguiente DataFrame:
+
+Código del DataFrame:
+
+import pandas as pd
+
+df = pd.DataFrame({
+   'Animal': ['Perro', 'Gato', 'Elefante', 'Perro', 'Gato', 'Elefante'],
+   'Color': ['Negro', 'Blanco', 'Gris', 'Marrón', 'Negro', 'Marrón'],
+   'Cantidad': [2, 3, 1, 4, 2, 2]
+})
+df
+Copia el código
+DataFrame:
+
+4.jpg
+
+Aquí tenemos un DataFrame con datos sobre algunos animales. Usaremos groupby para agrupar los datos por tipo de animal y realizar la suma de la columna "Cantidad" para obtener el total de cada tipo de animal:
+
+df.groupby('Animal').sum(numeric_only=True)
+Copia el código
+Resultado:
+
+5.jpg
+
+También podemos usar el método groupby para agrupar datos por múltiples columnas. Por ejemplo, agrupemos por tipo de animal y también por color, y realicemos la suma de la columna "Cantidad":
+
+df.groupby(['Animal', 'Color'])[['Cantidad']].sum()
+Copia el código
+Resultado:
+
+6.jpg
+
+Así, podemos observar que groupby es un método muy útil para situaciones en las que necesitamos dividir los datos en grupos para analizar el comportamiento de estos grupos. Utilizando este método, podemos responder preguntas específicas sobre nuestros conjuntos de datos. Si desea aprender más sobre este método, le sugiero dos artículos:
+
+Pandas GroupBy: Su guía para agrupar datos en Python;
+Explicación detallada del groupby de Pandas.
+Ambos artículos están en inglés, pero se pueden traducir fácilmente utilizando la extensión de traducción de Google Chrome.
+****************************************************************************************+
+04 Inmuebles residenciales
+En esta clase, se abordó el análisis exploratorio de datos enfocado en inmuebles residenciales. Se comenzó revisando un gráfico sobre el valor promedio de alquiler por tipo de inmueble, pero se destacó que este análisis no era suficiente. Se decidió segregar los datos entre inmuebles comerciales e inmuebles residenciales, ya que los valores de alquiler de estos dos grupos son significativamente diferentes.
+
+Para ello, se utilizó el método query de pandas para filtrar los datos y obtener solo los inmuebles residenciales. Se creó una lista de inmuebles comerciales y se aplicó una consulta para excluir estos de los datos, resultando en un dataframe que contenía solo inmuebles residenciales.
+
+Finalmente, se calculó el promedio de valores de alquiler para estos inmuebles residenciales y se preparó el análisis para calcular el porcentaje de cada tipo de inmueble presente en la base de datos, que se abordará en la próxima clase.
+/////////////////////////////////////////////////////////////////////////////////////
+05 Realizando selecciones con query
+ Siguiente pregunta
+
+El método query es una herramienta de Pandas que permite seleccionar datos en un DataFrame utilizando las condiciones que especificamos. Utiliza una sintaxis similar a SQL y es útil cuando necesitamos filtrar nuestros datos.
+
+Con base en esto, supongamos que el equipo de aprendizaje automático (ML) ha realizado la siguiente solicitud:
+
+Seleccione solo las propiedades que tienen una o más suites.
+
+¿Cuál de las siguientes opciones presenta la forma correcta de realizar esta selección?
+
+Alternativa incorreta
+df.query('Suites > 1')
+
+
+Alternativa incorreta
+df.query('Suites >= 1')
+
+
+Excelente! Al pasar la expresión 'Suites >= 1' al método query, especificamos que queremos seleccionar las filas en las que la columna "Suites" tiene un valor mayor o igual a 1.
+
+Alternativa incorreta
+df.query('Suites != 1')
+
+
+Alternativa incorreta
+df.query('Suites == 1')
+
+
+¡Enhorabuena, has acertado!
+ **************************************************************************************
+06 Porcentaje del tipo de inmuebles
+En esta clase, aprendimos a analizar el porcentaje de diferentes tipos de propiedades en un conjunto de datos utilizando la biblioteca Pandas. Comenzamos seleccionando el tipo de propiedad y aplicando el método unique para identificar las categorías disponibles, como apartamentos, casas, y más.
+
+Luego, utilizamos el método value_counts para contar la frecuencia de cada tipo de propiedad. Para visualizar estos datos en porcentajes, aplicamos el parámetro normalize=True, lo que nos permitió observar que el 85% de las propiedades eran apartamentos.
+
+Con esta información, decidimos enfocarnos únicamente en los departamentos, ya que son el tipo de propiedad más frecuente en el conjunto de datos. Utilizamos el método query para filtrar el DataFrame y almacenar solo los departamentos en una nueva variable.
+
+Finalmente, graficamos el porcentaje de cada tipo de propiedad utilizando un gráfico de barras, lo que nos permitió visualizar claramente la predominancia de los departamentos en el conjunto de datos. Con esto, concluimos la tarea solicitada por el equipo de Machine Learning y nos preparamos para la próxima clase, donde abordaremos el tratamiento de valores nulos.
+//////////////////////////////////////////////////////////////////////////////////////
+07 Métodos de la biblioteca Pandas
+ Siguiente pregunta
+
+La biblioteca Pandas tiene diferentes métodos que nos ayudan a analizar y explorar nuestros datos. Utilizando estos métodos, podemos agrupar datos, realizar selecciones, contar el número de valores únicos, entre otras cosas.
+
+Supongamos que necesitamos contar cuántas veces aparece cada barrio en nuestra base de datos. ¿Qué método podríamos utilizar para hacerlo?
+
+Alternativa incorreta
+df['Barrio'].nunique()
+
+
+Alternativa incorreta
+df['Barrio'].value_counts()
+
+
+El método value_counts() de Pandas se utiliza para devolver una serie que contiene recuentos de valores únicos en una columna u objeto Series de Pandas.
+
+Alternativa incorreta
+df['Barrio'].unique()
+
+
+Alternativa incorreta
+df['Barrio'].groupby()
+
+
+¡Enhorabuena, has acertado!
+************************************************************************************+
+ 08 Para saber más: alterando los nombres de las columnas
+ Siguiente pregunta
+
+Cuando trabajamos con bases de datos, en ocasiones puede ser necesario cambiar los nombres de las columnas. Por ejemplo, cuando creamos el siguiente DataFrame en nuestro proyecto:
+
+df['Tipo'].value_counts(normalize=True).to_frame().sort_values('Tipo')
+Copia el código
+Obtuvimos el siguiente resultado:
+
+7.jpg
+
+Podemos ver que la columna con los porcentajes está nombrada como "Tipo". ¿Y si quisiéramos cambiar su nombre a "Porcentajes"?
+
+En ese caso, podemos utilizar el método rename() para cambiar el nombre de esa columna. Este método nos permite especificar un diccionario que asocia el nombre antiguo de la columna con el nuevo nombre que deseamos asignar. Entonces, hagámoslo:
+
+# Guardando el DataFrame en una variable
+df_ejemplo = df['Tipo'].value_counts(normalize=True).to_frame().sort_values('Tipo')
+
+# Cambiando el nombre de la columna "Tipo" a "Porcentajes"
+df_ejemplo.rename(columns={'Tipo': 'Porcentajes'}, inplace=True)
+
+# Visualizando el DataFrame
+df_ejemplo
+Copia el código
+Hemos utilizado el parámetro inplace=True para que este cambio se aplique definitivamente en nuestro DataFrame df_ejemplo. Entonces, al visualizar el DataFrame, obtendremos el siguiente resultado:
+
+8.jpg
+
+¡Y listo! Ahora también sabemos cómo cambiar nombres de columnas en un DataFrame.
+********************************************************************
+
+
+
+
