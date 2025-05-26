@@ -586,6 +586,339 @@ Se mostró cómo utilizar el método to_csv para guardar los dataframes, asegur�
 Además, se explicó cómo guardar los archivos en Google Drive para que estén disponibles incluso después de desconectarse del cuaderno de trabajo. Finalmente, se realizó una revisión de los archivos guardados para asegurarse de que se habían creado correctamente.
 
 La clase concluyó con la entrega de todas las demandas del equipo de Machine Learning y la preparación para abordar las solicitudes del equipo de desarrollo web en la próxima sesión.
+**************************************************************
+09
+Desafío: guardando los datos filtrados
+ Siguiente pregunta
+
+Durante el desarrollo de nuestro proyecto, aplicamos algunos filtros a nuestra base de datos y guardamos los DataFrames resultantes en diferentes variables, denominadas df_1 y df_2.
+
+Con base en esto, guarda estos DataFrames en 2 archivos CSV diferentes para que el equipo de ML pueda acceder a estos datos de manera más conveniente.
+
+Ver opinión del instructor
+Opinión del instructor
+
+Para guardar estos DataFrames en formato CSV, podemos utilizar el método to_csv que ya conocemos:
+
+df_1.to_csv('filtro_1.csv', index=False, sep=";")
+df_2.to_csv('filtro_2.csv', index=False, sep=";")
+Copia el código
+Con los archivos guardados, también puede ser interesante leer cada uno de ellos utilizando read_csv() para asegurarse de que todo se haya realizado correctamente.
+*********************************************************************************
+10
+Para saber más: exportando diferentes formatos
+ Siguiente pregunta
+
+Pandas proporciona varios métodos para guardar archivos en diferentes formatos. Algunos ejemplos son:
+
+to_csv(): Guarda el DataFrame en un archivo CSV (Valores Separados por Comas).
+
+to_excel(): Guarda el DataFrame en un archivo de Excel.
+
+to_json(): Guarda el DataFrame en un archivo JSON (Notación de Objetos JavaScript).
+
+Estos son solo algunos ejemplos, existen otros métodos disponibles en Pandas para guardar archivos en diferentes formatos. Si deseas conocerlos, consulta la documentación:
+
+User Guide - IO Tools
+~ https://pandas.pydata.org/docs/user_guide/io.html#io-tools-text-csv-hdf5
+****************************************************************************
+11
+Desafío: vamos a practicar
+ Siguiente pregunta
+
+Para practicar los métodos aprendidos a lo largo de esta lección y aprender nuevos, realizaremos algunos tratamientos y selecciones utilizando un archivo CSV diferente: alumnos.csv.
+
+Este archivo es el mismo que se utilizó para resolver los desafíos de la lección 1 y contiene datos de estudiantes de un curso superior.
+
+Basándonos en esto, resolvamos los problemas propuestos a continuación utilizando los conocimientos adquiridos hasta ahora.
+
+Verifica si la base de datos contiene datos nulos y, en caso de tenerlos, realiza el tratamiento de estos datos nulos de la manera que consideres más coherente con la situación.
+
+Los estudiantes "Alicia" y "Carlos" ya no forman parte del grupo. Por lo tanto, elimínalos de la base de datos.
+
+Aplica un filtro que seleccione solo a los estudiantes que fueron aprobados.
+
+Guarda el DataFrame que contiene solo a los estudiantes aprobados en un archivo CSV llamado "alumnos_aprobados.csv".
+
+Extra: Al revisar las calificaciones de los estudiantes aprobados, notamos que algunas calificaciones eran incorrectas. Las estudiantes que obtuvieron una calificación de 7.0, en realidad tenían un punto extra que no se contabilizó. Por lo tanto, reemplaza las calificaciones de 7.0 en la base de datos por 8.0. Consejo: busca el método replace.
+
+Si necesitas ayuda, en la sección "Opinión del Instructor" puedes encontrar algunas formas de resolver los desafíos propuestos anteriormente.
+
+Ver opinión del instructor
+Opinión del instructor
+
+¡Vamos a resolver estos desafíos!
+
+Es importante destacar que en algunas situaciones, podemos utilizar diferentes métodos de Pandas para lograr lo mismo. Por lo tanto, las soluciones a continuación no son la única forma de abordar los desafíos planteados.
+
+1 - Podemos comenzar verificando la existencia de datos nulos:
+
+datos.isnull().sum()
+Copia el código
+Con el resultado, notaremos que solo la columna "Nota" contiene datos nulos. En este caso, podemos suponer que los estudiantes sin calificación probablemente tenían un 0. Por lo tanto, podemos reemplazar los valores nulos por 0:
+
+datos = datos.fillna(0)
+Copia el código
+2 - Para eliminar a los estudiantes "Alicia" y "Carlos" de nuestra base de datos, necesitamos obtener los índices de las filas donde se encuentran sus nombres y utilizar el método drop para eliminar las filas respectivas:
+
+# Guardamos los índices de las filas a eliminar en una variable
+alumnos_a_eliminar = datos.query('Nombre == "Alicia" | Nombre == "Carlos"').index
+
+# Eliminamos las filas correspondientes a los estudiantes "Alicia" y "Carlos"
+datos.drop(alumnos_a_eliminar, axis=0, inplace=True)
+Copia el código
+3 - En este caso, nuestro primer paso es crear una variable en la que seleccionamos solo a los estudiantes aprobados:
+
+seleccion = datos['Aprobado'] == True
+Copia el código
+Hecho esto, podemos aplicar esta selección a nuestro DataFrame:
+
+datos[seleccion]
+Copia el código
+4 - Para guardar el DataFrame con solo los estudiantes aprobados, podemos comenzar guardando el DataFrame resultante del desafío 3 en una variable:
+
+alumnos_aprobados = datos[seleccion]
+Copia el código
+Luego, podemos usar el método to_csv para guardarlo en formato CSV:
+
+alumnos_aprobados.to_csv('alumnos_aprobados.csv', index=False)
+Copia el código
+Extra: El método replace se utiliza para reemplazar un valor específico por otro. En el caso de nuestra base de datos, queremos reemplazar los valores 7.0 por 8.0. Para hacerlo, podemos usar el siguiente fragmento de código:
+
+alumnos_aprobados.replace(7.0, 8.0)
+Copia el código
+Y para guardar este cambio de forma definitiva, podemos asignarlo a nuestra variable:
+
+alumnos_aprobados = alumnos_aprobados.replace(7.0, 8.0)
+Copia el código
+¡No olvides practicar para consolidar todos los conceptos que has aprendido!
+
+Si tienes alguna pregunta, no dudes en compartirla en el foro o en nuestra comunidad de Discord.
+***********************************************************************************
+12
+Lo que aprendimos
+ Siguiente pregunta
+
+Lo que aprendimos en esta aula:
+
+Verificar si una base de datos tiene datos nulos;
+Tratar los datos nulos;
+Eliminar filas y columnas de un DataFrame;
+Realizar diferentes selecciones en una base de datos;
+Guardar datos en formato csv;
+Utilizar el método replace para reemplazar valores en una base de datos.
+**********************************************************
+**********************************************************
+04. Manipulación de datos
+01
+Proyecto del aula anterior
+ Siguiente pregunta
+
+¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
+
+Descargue los archivos en Github
+****************************************************************
+02
+Crear columnas numéricas
+En esta clase, aprendimos sobre la creación de columnas numéricas en un data frame utilizando la biblioteca Pandas. El objetivo era agregar dos nuevas columnas a la base de datos de propiedades: una para el valor mensual, que incluye los gastos de alquiler y condominio, y otra para el valor anual, que suma el impuesto y 12 meses de alquiler y condominio.
+
+Primero, se reimportó la base de datos y se verificó su forma. Luego, se creó la columna "valor mensual" sumando el valor del alquiler y el valor del condominio. Después de verificar que la columna se había creado correctamente, se procedió a crear la columna "valor anual", que se calculó multiplicando el valor mensual por 12 y sumando el valor del impuesto.
+
+Finalmente, se confirmó que ambas columnas se habían agregado correctamente al data frame, cumpliendo así con las demandas del equipo de desarrolladores web. La clase concluyó mencionando que en la próxima lección se abordarán las columnas categóricas.
+
+Copiar texto de Luri al portapapeles
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+03
+Operaciones entre columnas
+ Siguiente pregunta
+
+Supongamos que tenemos el siguiente DataFrame con información sobre algunos autos en venta:
+
+Código para crear el DataFrame:
+
+import pandas as pd
+
+datos = {
+    'Nombre': ['Jetta', 'Passat', 'Crossfox', 'DS5', 'Escarabajo'], 
+    'Motor': ['Motor 4.0 Turbo', 'Motor Diesel', 'Motor Diesel V8', 'Motor 2.0', 'Motor 1.6'],
+    'Modelo': [2019, 2003, 1991, 2019, 1990],
+    'Kilometraje': [0.0, 5712.0, 37123.0, 0.0, 120000.0],
+    'Valor': [88000.0, 106000.0, 72000.0, 89000.0, 32000.0],
+    'Impuesto': [2000.0, 5000.0, 1700.0, 2200.0, 1000.0],
+    'Descuento': [380.0, 450.0, 277.0, 400.0, 150.0]
+}
+
+df = pd.DataFrame(datos)
+Copia el código
+DataFrame:
+
+10.jpg
+
+Necesitamos crear una columna llamada "Valor_total" que tenga el valor del automóvil, sumado al impuesto y menos el valor del descuento. ¿Cuál de las siguientes opciones presenta el código correcto para crear esta columna?
+
+Alternativa incorreta
+df['Valor_total'] = df['Valor'] + df['Impuesto'] - df['Descuento']
+
+De esta manera, estamos creando correctamente una nueva columna a partir de operaciones entre las columnas "Valor", "Impuesto" y "Descuento", según se solicitó.
+
+Alternativa incorreta
+df['Valor_total'] = df['Valor'] - df['Impuesto'] + df['Descuento']
+
+Alternativa incorreta
+df['Valor_total'] = 'Valor' + 'Impuesto' + 'Descuento'
+
+Alternativa incorreta
+df['Valor_total'] = df['Valor'] - df['Descuento']
+
+¡Enhorabuena, has acertado!
+ Discutir en el Foro
+*****************************************************************************
+04
+Creando la columna Descripción
+En esta clase, se aborda la creación de columnas categóricas en un conjunto de datos utilizando la biblioteca Pandas. Se enfoca en la creación de una columna llamada Descripción, que debe contener un resumen de información clave sobre propiedades, incluyendo el tipo de propiedad, el barrio (denominado "colonia"), la cantidad de habitaciones y las plazas de estacionamiento.
+
+Se explica cómo concatenar estos elementos en una sola cadena de texto, asegurándose de incluir espacios adecuados entre ellos. Además, se menciona la importancia de convertir los números enteros (como la cantidad de habitaciones y garajes) a tipo de cadena (str) antes de la concatenación, ya que no se pueden mezclar tipos de datos al concatenar.
+
+Finalmente, se deja abierta la posibilidad de crear una segunda columna que indique si la propiedad tiene suite, lo cual se abordará en la próxima clase.
+**********************************************************************************
+ 05 Para saber más: creando columnas
+ Siguiente pregunta
+
+Hay varias formas de crear columnas en un DataFrame en Pandas. Algunos ejemplos son:
+
+1 - Asignación directa de valores a una nueva columna:
+
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+df['C'] = [7, 8, 9]
+Copia el código
+2 - Creación de una columna a partir de operaciones entre otras columnas:
+
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+df['C'] = df['A'] + df['B']
+Copia el código
+3 - Uso del método assign() para crear una nueva columna:
+
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+df = df.assign(C=[7, 8, 9])
+Copia el código
+4 - Uso del método apply() para aplicar una función a una columna existente y crear una nueva columna:
+
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+df['C'] = df['A'].apply(lambda x: x * 2)
+Copia el código
+Si deseas profundizar en este tema, consulta la documentación:
+
+How to create new columns derived from existing columns
+
+~ https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html#how-to-create-new-columns-derived-from-existing-columns
+
+*************************************************************************************
+06 Creando la columna tiene_suite
+En esta clase, aprendimos a crear una nueva columna en un DataFrame de Pandas llamada TieneSuite, que indica si una propiedad tiene o no suites. Una suite se define como una habitación con baño. Para lograr esto, utilizamos el método apply junto con una función anónima lambda que verifica si el número de suites en la columna suites es mayor a cero. Si es así, la columna TieneSuite se llenará con "sí"; de lo contrario, con "no".
+
+Además, al final de la clase, se mostró cómo guardar el DataFrame modificado en un archivo CSV, asegurando que el índice no se incluya y que el separador sea un punto y coma, manteniendo la consistencia con el archivo original. Finalmente, se concluyó el proyecto, cumpliendo con todas las demandas del equipo de desarrollo.
+
+Si tienes alguna pregunta específica sobre el contenido, ¡estaré encantado de ayudarte!
+*****************************************************************************
+07 Desafío: vamos a practicar
+ Siguiente pregunta
+
+Para practicar los métodos aprendidos en esta lección y aprender nuevos, realizaremos algunos tratamientos y selecciones utilizando un archivo CSV diferente: alumnos.csv.
+
+Este archivo es el mismo que se utilizó para resolver los desafíos de las aulas 1 y 3 y contiene datos de estudiantes de un curso superior. Con base en esto, resolvamos los problemas propuestos a continuación utilizando los conocimientos adquiridos hasta ahora.
+
+Los estudiantes participaron en una actividad extracurricular y ganaron puntos extras. Estos puntos extras corresponden al 40% de su nota actual. Por lo tanto, crea una columna llamada "Puntos_extras" que contenga los puntos extras de cada estudiante, es decir, el 40% de su nota actual.
+
+Crea otra columna llamada "Notas_finales" que contenga las notas de cada estudiante sumadas con los puntos extras.
+
+Dado que hubo una puntuación extra, algunos estudiantes que no habían sido aprobados antes pueden haber sido aprobados ahora. En función de esto, crea una columna llamada "Aprobado_final" con los siguientes valores:
+
+True: si el estudiante está aprobado (la nota final debe ser mayor o igual a 7.0).
+False: si el estudiante está reprobado (la nota final debe ser menor que 7.0).
+Realiza una selección y verifica qué estudiantes no habían sido aprobados anteriormente, pero ahora fueron aprobados después de sumar los puntos extras.
+
+Si necesitas ayuda, en la sección "Opinión del Instructor", puedes encontrar algunas formas de resolver los desafíos propuestos anteriormente.
+
+Ver opinión del instructor
+Opinión del instructor
+
+¡Vamos a resolver estos desafíos!
+
+Es importante destacar que en algunas situaciones, podemos utilizar diferentes métodos de Pandas para lograr lo mismo. Por lo tanto, las soluciones a continuación no son la única forma de abordar los desafíos planteados.
+
+1 - Para crear la columna "Puntos_extras", podemos utilizar el método apply para aplicar una función a la columna "Nota". Esta función debe multiplicar 0.4 por el valor de la nota de cada estudiante y colocar el resultado en nuestra nueva columna:
+
+datos['Puntos_extras'] = datos['Nota'].apply(lambda x: x*0.4)
+Copia el código
+2 - La columna "Notas_finales" será la suma de las columnas "Nota" y "Puntos_extras":
+
+datos['Notas_finales'] = datos['Nota'] + datos['Puntos_extras']
+Copia el código
+3 - Para crear la columna "Aprobado_final", podemos utilizar el método apply para aplicar una función a la columna "Notas_finales". Esta función debe colocar True si la nota final es mayor o igual a 7.0 y, en caso contrario, debe colocar False:
+
+datos['Aprobado_final'] = datos['Notas_finales'].apply(lambda x: True if x >= 7.0 else False)
+Copia el código
+4 - Esta selección se puede realizar utilizando el método query:
+
+datos.query('Aprobado == False & Aprobado_final == True')
+Copia el código
+O también se puede hacer de manera más manual:
+
+seleccion = (datos['Aprobado'] == False) & (datos['Aprobado_final'] == True)
+datos[seleccion]
+Copia el código
+¡No dejes de practicar para consolidar todos los conceptos que has aprendido!
+
+Si tienes alguna pregunta, no dudes en compartirla en el foro o en nuestra comunidad de Discord.
+*********************************************************************
+08
+Proyecto final
+ Siguiente pregunta
+
+Aquí puedes descargar los archivos del proyecto completo.
+
+Descargue los archivos en GitHub
+**********************************************************************
+09
+Lo que aprendimos
+ Siguiente pregunta
+
+Lo que aprendimos en esta aula:
+
+Generar columnas numéricas;
+Insertar columnas categóricas;
+Definir columnas binarias;
+Realizar operaciones entre columnas;
+Utilizar el método apply;
+Crear funciones lambda.
+*********************************************************************
+10
+Conclusión
+¡Claro! En esta clase, hemos aprendido sobre la biblioteca Pandas de Python, enfocándonos en la manipulación de datos. A lo largo del entrenamiento, exploramos diversas funcionalidades, como:
+
+Importar la biblioteca.
+Realizar un análisis exploratorio de los datos.
+Tratar valores nulos y eliminar registros inconsistentes.
+Aplicar filtros a los conjuntos de datos.
+Exportar nuestros datos.
+Crear columnas numéricas y categóricas.
+El curso enfatiza la importancia de la práctica diaria para dominar Pandas, ya que es una herramienta muy valiosa para científicos y analistas de datos. También se sugiere consultar la documentación de Pandas para profundizar en el aprendizaje. Al final, se invita a los estudiantes a compartir su progreso y dar retroalimentación sobre el curso.
+
+¿Hay algo específico que te gustaría discutir o aclarar sobre esta clase?
+
+
+
+
+
+
 
 
 
