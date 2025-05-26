@@ -376,7 +376,216 @@ Hemos utilizado el parámetro inplace=True para que este cambio se aplique defin
 
 ¡Y listo! Ahora también sabemos cómo cambiar nombres de columnas en un DataFrame.
 ********************************************************************
+ 09 Desafío: vamos a practicar
+ Siguiente pregunta
 
+El equipo de ML ha llegado con algunas demandas de última hora que debemos resolver en este momento de análisis exploratorio. Estas demandas son las siguientes:
+
+Calcular el promedio de habitaciones por departamento.
+
+Verificar cuántas colonias únicas existen en nuestra base de datos.
+
+Analizar qué colonias tienen el promedio de alquiler más alto.
+
+Crear un gráfico de barras horizontales que muestre las 5 colonias con los promedios de alquiler más altos.
+
+Si necesitas ayuda, en la sección "Opinión del Instructor" puedes encontrar algunas formas de resolver los desafíos propuestos anteriormente.
+///////////////////////////////****************************************+
+Opinión del instructor
+
+¡Vamos a resolver estos desafíos!
+
+Es importante destacar que en algunas situaciones podemos utilizar diferentes métodos de Pandas para lograr lo mismo. Por lo tanto, las soluciones a continuación no son la única forma de abordar los desafíos planteados.
+
+1 - Para calcular el promedio de habitaciones, podemos seleccionar la columna de interés y aplicar el método mean():
+
+df['Habitaciones'].mean()
+Copia el código
+2 - Una forma de verificar cuántos barrios únicos existen en la base de datos sería utilizando el método unique(), que nos devolverá una lista con los barrios únicos. Luego, podemos usar la función len para contar cuántos elementos hay en esa lista:
+
+len(df['Colonia'].unique())
+Copia el código
+Además, también podemos utilizar un método de Pandas que realiza directamente el conteo de elementos únicos en una columna específica. Este método es nunique():
+
+df['Colonia'].nunique()
+Copia el código
+3 - Para analizar qué barrios tienen el promedio de valor de alquiler más alto, podemos:
+
+Agrupar nuestra base de datos por la columna "Colonia".
+Aplicar el método mean.
+Colocar el resultado en un DataFrame y ordenarlo.
+df.groupby('Colonia')[['Valor']].mean().sort_values('Valor', ascending=False)
+Copia el código
+El parámetro ascending=False se utiliza en la función sort_values() para ordenar los valores en orden descendente (de mayor a menor).
+
+4 - Como queremos crear un gráfico con solo las 5 colonias que tienen el promedio de alquiler más alto, podemos usar .head() para seleccionar las 5 primeras filas del DataFrame que creamos en el desafío 3 y guardar eso en una variable:
+
+df_colonias = df.groupby('Colonia')[['Valor']].mean().sort_values('Valor', ascending=False).head()
+Copia el código
+Luego, podemos crear el gráfico:
+
+df_colonias.plot(kind='barh', figsize=(14,10), color='blue');
+Copia el código
+¡No olvides practicar para consolidar todos los conceptos que has aprendido!
+
+Si tienes alguna pregunta, no dudes en compartirla en el foro o en nuestra comunidad de Discord.
+***************************************************************
+ 10 Lo que aprendimos
+ Siguiente pregunta
+
+Lo que aprendimos en esta aula:
+
+Identificar qué hacer durante un proceso de análisis exploratorio;
+Calcular el promedio de valores de un DataFrame;
+Agrupar los datos según una columna específica utilizando groupby;
+Realizar selecciones utilizando el método query;
+Transformar Series en DataFrames;
+Ordenar valores de un DataFrame con sort_values;
+Graficar barras verticales y horizontales;
+Visualizar valores únicos con unique;
+Utilizar value_counts para contar valores únicos y calcular porcentajes;
+Cambiar nombres de columnas.
+********************************************************************
+*********************************************************************
+03. Tratamiento y filtrado de datos
+01
+Proyecto del aula anterior
+ Siguiente pregunta
+
+¿Comenzando en esta etapa? Aquí puedes descargar los archivos del proyecto que hemos avanzado hasta el aula anterior.
+
+Descargue los archivos en GitHub
+**********************************************************************+
+02
+Tratando valores nulos
+¡Claro! En esta clase, aprendimos sobre el tratamiento y filtrado de datos, específicamente cómo manejar los valores nulos en un conjunto de datos que será utilizado por un equipo de Machine Learning para estimar precios de alquiler de propiedades.
+
+Primero, verificamos la existencia de datos nulos en nuestro DataFrame utilizando el método isnull(), que nos devuelve una tabla de booleanos. Luego, sumamos los valores booleanos para contar cuántos datos nulos hay en cada columna.
+
+Después, se nos indicó que asignáramos un valor de 0 a los datos nulos. Utilizamos la función fillna(0) para llenar esos valores nulos con 0 y aseguramos que este cambio se registrara en el DataFrame. Finalmente, verificamos nuevamente que no quedaran datos nulos.
+
+La clase concluyó con la importancia de documentar el tratamiento de datos nulos y se mencionó que el próximo paso sería remover registros inconsistentes.
+
+Si tienes alguna pregunta o necesitas más detalles sobre algún punto, ¡estaré encantado de ayudarte!
+**********************************************************************************+
+ 03 Para saber más: lidiando con datos nulos
+ Siguiente pregunta
+
+Tratar datos nulos en una base de datos es muy importante porque estos datos faltantes pueden interferir directamente en la calidad de los análisis y los resultados obtenidos. Cuando hay datos nulos en un conjunto de datos, pueden surgir problemas como sesgo, reducción de la precisión y falta de precisión en la información obtenida.
+
+Además, algunos análisis y modelos estadísticos no pueden manejar la presencia de datos faltantes. Por lo tanto, el tratamiento de los datos nulos es fundamental para garantizar la confiabilidad y la precisión de los análisis y decisiones basadas en estos datos.
+
+Existen varias formas de tratar datos nulos con Pandas. Algunas de las formas principales son:
+
+Eliminar los datos nulos: Es posible eliminar las filas o columnas que contienen valores nulos utilizando el método dropna(). Este método elimina todas las filas o columnas que tienen al menos un valor nulo.
+
+Llenar los datos nulos: Utilizando el método fillna(), podemos llenar los valores nulos con un valor específico. Además, también es posible utilizar argumentos específicos del método fillna(), como method="ffill" o method="bfill", para llenar los valores nulos con el valor anterior 
+ posterior, respectivamente.
+
+Interpolar los datos nulos: Es posible utilizar el método interpolate() para llenar los valores nulos con valores interpolados, es decir, valores calculados a partir de los valores vecinos.
+
+Es importante elegir la mejor forma de tratar los datos nulos según la situación específica y el objetivo del análisis de datos.
+**************************************************************************************
+04 Remover registros inconsistentes
+En esta clase, aprendimos sobre el tratamiento y filtrado de datos utilizando la biblioteca Pandas. El enfoque principal fue eliminar registros inconsistentes de un DataFrame, específicamente aquellos apartamentos que tenían un valor de alquiler o un valor de condominio igual a cero, ya que estos datos no tienen sentido.
+
+Primero, utilizamos el método df.query para identificar los registros que cumplían con estas condiciones. Luego, extraímos los índices de estos registros para poder eliminarlos. Usamos el método drop para eliminar las filas correspondientes, especificando el parámetro in place para modificar el DataFrame directamente sin necesidad de asignarlo a una nueva variable.
+
+Después de eliminar los registros inconsistentes, verificamos el estado del DataFrame y notamos que todos los apartamentos eran del mismo tipo. Por lo tanto, decidimos eliminar la columna de tipo, ya que no aportaba información relevante. Finalmente, realizamos una muestra del DataFrame resultante, que ahora contenía solo las columnas necesarias.
+
+En resumen, esta clase se centró en la limpieza de datos, eliminando registros no válidos y optimizando la estructura del DataFrame.
+//////////////////////////////////////////////////////////////////////////////////////////////
+ 05 Método drop()
+ Siguiente pregunta
+
+El método drop() de la biblioteca Pandas permite eliminar una o más filas y/o columnas de un DataFrame. Esta eliminación se puede realizar de forma permanente en el DataFrame original. Es posible especificar los índices de las filas y/o columnas que se deben eliminar, así como el eje en el que debe ocurrir la eliminación.
+
+Suponga que tenemos el siguiente DataFrame, guardado en una variable llamada "datos":
+
+Código para crear el DataFrame:
+
+import pandas as pd
+
+0 datos = pd.DataFrame([['Plaza', 'Cebolla', 2.5], 
+1                      ['Mercado', 'Cebolla', 1.99], 
+2                      ['Supermercado', 'Cebolla', 1.69], 
+3                      ['Plaza', 'Tomate', 4], 
+4                      ['Mercado', 'Tomate', 3.29], 
+5                      ['Supermercado', 'Tomate', 2.99], 
+6                      ['Plaza', 'Papa', 4.2], 
+7                      ['Mercado', 'Papa', 3.99], 
+8                      ['Supermercado', 'Papa', 3.69]],
+                      columns = ['Comercio', 'Producto', 'Precio'])
+Copia el código
+DataFrame:
+
+9.img
+
+¿Cuál de los siguientes códigos se podría utilizar para eliminar de forma permanente las filas en las que, en la columna "Comercio", tenemos "Supermercado"?
+
+Alternativa incorreta
+datos.drop([1, 4, 7], axis=0, inplace=True)
+
+Alternativa incorreta
+datos.drop('Comercio', axis=1, inplace=True)
+
+Alternativa incorreta
+datos.drop([2, 5, 8], axis=0, inplace=True) => CORRECTO
+
+De esta manera, pasamos una lista con los índices de las filas en las que, en la columna "Comercio", tenemos "Supermercado", es decir, los índices de las filas que deseamos eliminar. También se especifica axis=0, lo que indica que deseamos eliminar filas.
+
+Alternativa incorreta
+datos.drop('Supermercado', axis=1, inplace=True)
+
+¡Enhorabuena, has acertado!
+ Discutir en el Foro
+*********************************************************************************************
+06 Aplicar filtros
+En esta clase, aprendimos a aplicar filtros en un DataFrame utilizando la biblioteca Pandas. Se nos presentó una tarea que consistía en evaluar propiedades específicas, como apartamentos con un dormitorio y un alquiler menor a R$4.200, así como apartamentos con al menos dos dormitorios, un alquiler menor a R$10.500 y una superficie mayor a 70 metros cuadrados.
+
+Primero, creamos dos selecciones (o filtros) utilizando condiciones booleanas. La primera selección (seleccion1) filtró los apartamentos que tienen un dormitorio, y la segunda (seleccion2) filtró aquellos con un alquiler menor a R$4.200. Combinamos ambas selecciones utilizando el operador & para obtener un DataFrame que cumpliera ambas condiciones, que llamamos DF1.
+
+Luego, aplicamos un segundo filtro (filtro2) para los apartamentos que tienen al menos dos dormitorios, un alquiler menor a R$10.500 y una superficie mayor a 70 metros cuadrados. Este filtro se aplicó directamente al DataFrame, y los resultados se guardaron en DF2.
+
+Al final, logramos aplicar todos los filtros solicitados y preparamos los datos para la siguiente etapa, que será guardar la información.
+////////////////////////////////////////////////////////////////////////////////////////////
+07
+Realizando selecciones
+ Siguiente pregunta
+
+El equipo de Machine Learning solicitó realizar otro filtro en nuestra base de datos. Esta vez, el filtro sería para obtener la siguiente información:
+
+¿Cuáles son los apartamentos que tienen un área mayor de 80 m² o un alquiler menor de MXN 4.000,00?
+
+Con base en esto, ¿cuál de las siguientes opciones presenta un código que se puede utilizar para obtener la información solicitada?
+
+Alternativa incorreta
+seleccion = (df['Area'] > 80) | (df['Valor'] < 4000)
+df[seleccion]
+
+Muy bien, de esta manera, estamos realizando el filtro exactamente como lo solicitó el equipo de Machine Learning.
+
+Alternativa incorreta
+seleccion = (df['Area'] > 4000) & (df['Valor'] < 80)
+df[seleccion]
+
+Alternativa incorreta
+seleccion = (df['Area'] < 80) | (df['Valor'] > 4000)
+df[seleccion]
+
+Alternativa incorreta
+seleccion = (df['Area'] > 80) & (df['Valor'] < 4000)
+df[seleccion]
+*************************************************************************************+
+08
+Exportando los datos
+En esta clase, aprendimos sobre el tratamiento y filtrado de datos utilizando la biblioteca Pandas, específicamente cómo exportar dataframes a archivos CSV. Se discutió la importancia de guardar los dataframes generados para cumplir con las demandas del equipo de Machine Learning, que requería tres dataframes: uno completo y dos filtrados.
+
+Se mostró cómo utilizar el método to_csv para guardar los dataframes, asegurándose de no incluir el índice antiguo al establecer index=False. También se destacó la importancia de mantener la consistencia en el formato de los archivos, utilizando el separador adecuado (punto y coma en este caso).
+
+Además, se explicó cómo guardar los archivos en Google Drive para que estén disponibles incluso después de desconectarse del cuaderno de trabajo. Finalmente, se realizó una revisión de los archivos guardados para asegurarse de que se habían creado correctamente.
+
+La clase concluyó con la entrega de todas las demandas del equipo de Machine Learning y la preparación para abordar las solicitudes del equipo de desarrollo web en la próxima sesión.
 
 
 
